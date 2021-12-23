@@ -1,0 +1,6 @@
+.App {
+  display: flex;
+  justify-content: center;
+  background: rgba(54, 152, 253, 0.8);
+  height: 100vh;
+}
