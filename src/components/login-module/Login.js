@@ -1,32 +1,33 @@
 import React, { useRef, useState } from 'react';
 import { GoogleOutlined } from '@ant-design/icons';
-import { auth } from '../firebase';
+import { auth } from '../../firebase';
 import { GoogleAuthProvider, signInWithRedirect } from 'firebase/auth';
-import { useAuth } from '../contexts/AuthContext';
+import { useAuth } from '../../contexts/AuthContext';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Alert } from 'bootstrap/dist/css/bootstrap.min.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import './login.css';
 
-const Login = () => {
+function Login() {
   const emailRef = useRef();
   const passwordRef = useRef();
   const { login } = useAuth();
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
 
-  const handleSubmit = async (e) => {
+  async function handleSubmit(e) {
     e.preventDefault();
 
     try {
       setError('');
       setLoading(true);
       await login(emailRef.current.value, passwordRef.current.value);
+      navigate('/');
     } catch {
       setError('Failed to Login');
     }
     setLoading(false);
-    console.log(emailRef, passwordRef);
-  };
+  }
 
   const signInWithGoogle = () => {
     const provider = new GoogleAuthProvider();
@@ -67,11 +68,14 @@ const Login = () => {
           Login With Google
         </button>
         <p>
-          Need an account? <Link to='/signup'>signup</Link>
+          Need an account?<Link to='/signup'>signup</Link>
         </p>
       </form>
+      <p>
+        <Link to='/forgot-password'>Forgot Password?</Link>
+      </p>
     </div>
   );
-};
+}
 
 export default Login;

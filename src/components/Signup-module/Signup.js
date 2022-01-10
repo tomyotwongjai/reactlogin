@@ -5,9 +5,7 @@ import { auth } from '../../firebase';
 import { GoogleAuthProvider, signInWithRedirect } from 'firebase/auth';
 import { useAuth } from '../../contexts/AuthContext';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Alert } from 'bootstrap/dist/css/bootstrap.min.css';
-import { Link } from 'react-router-dom';
-import Loader from '../Loader/Loader';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Signup = () => {
   const emailRef = useRef();
@@ -16,6 +14,7 @@ const Signup = () => {
   const { signup } = useAuth();
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -26,11 +25,11 @@ const Signup = () => {
       setError('');
       setLoading(true);
       await signup(emailRef.current.value, passwordRef.current.value);
+      navigate('/');
     } catch {
       setError('Failed to create an account');
     }
     setLoading(false);
-    console.log(emailRef, passwordRef);
   };
 
   const signInWithGoogle = () => {

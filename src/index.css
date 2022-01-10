@@ -10,3 +10,31 @@ body {
   background: rgb(245, 143, 143);
   color: crimson;
 }
+
+.logo-tab {
+  position: absolute;
+  left: 22px;
+  top: 12px;
+  font-size: 32px;
+  font-weight: 700;
+  color: rgb(57, 114, 201);
+}
+.logout-tab {
+  position: absolute;
+  top: 22px;
+  right: 22px;
+  color: white;
+  cursor: pointer;
+}
+.btn {
+  background: rgb(57, 114, 201);
+  color: #fff;
+  width: 100%;
+  padding: 20px;
+  border-radius: 10px;
+  font-size: 15px;
+  margin: 10px 0;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
